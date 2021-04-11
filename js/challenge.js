@@ -35,15 +35,23 @@ document.addEventListener("DOMContentLoaded", function () {
             heartUl.append(li);
         }
     }
-
+    //review below!
     function pauseClicked() {
         paused = !paused; //changing 'paused' var to true.
         if (paused) {
             clearInterval(interval); //'interval' is a let var
             pause.innerText = "resume";
+            plus.disabled = true;
+            minus.disabled = true;
+            heart.disabled = true;
+            commentForm = true;
         } else {
             interval = setInterval(plusCounter, 1000);
             pause.innerText = "pause";
+            plus.disabled = false;
+            minus.disabled = false;
+            heart.disabled = false;
+            commentForm = false;
         }
     };
 
@@ -53,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const li = document.createElement("li");
         li.innerText = comment;
         comments.append(li);
-        event.target.reset();
+        event.target.reset(); //This empties the input box when hit 'submit' for the next input.
     }
 
     // Add E.Ls
@@ -61,12 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
     minus.addEventListener("click", minusCounter);
     heart.addEventListener("click", addLike);
     pause.addEventListener("click", pauseClicked);
-    commentForm.addEventListener("click", handleSubmit);
-
-
-
-
-
+    commentForm.addEventListener("submit", handleSubmit); //!! it's submit! not click!
 
 
 
